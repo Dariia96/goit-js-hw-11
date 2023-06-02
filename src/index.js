@@ -3,6 +3,7 @@ import './css/styles.css';
 /*import axios, * as others from 'axios';*/
 import Notiflix from 'notiflix';
 import axios from 'axios';
+const axios = require('axios/dist/node/axios.cjs');
 /*import axios, {isCancel, AxiosError} from 'axios';
 const axios = require('axios/dist/browser/axios.cjs');
 const axios = require('axios');
