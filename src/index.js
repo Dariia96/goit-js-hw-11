@@ -2,11 +2,11 @@ import './css/styles.css';
 
 /*import axios, * as others from 'axios';*/
 import Notiflix from 'notiflix';
-import axios from 'axios';
+/*import axios from 'axios';
 import axios, {isCancel, AxiosError} from 'axios';
 const axios = require('axios/dist/browser/axios.cjs');
 const axios = require('axios');
-const axios = require('axios/dist/browser/axios.cjs');
+const axios = require('axios/dist/browser/axios.cjs');*/
 
 
 const form = document.querySelector('.search-form');
