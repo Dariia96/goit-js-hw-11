@@ -3,7 +3,7 @@ import './css/styles.css';
 import axios from 'axios';
 
 import Notiflix from 'notiflix';
-
+import SimpleLightbox from "simplelightbox";
 
 const form = document.querySelector('.search-form');
 const input = document.querySelector('input');
@@ -31,8 +31,11 @@ function handlerPagination(entries, observer) {
             servicePicture(page)
                     .then(pictures => {
                         gallery.insertAdjacentHTML('beforeend', createMarkup(pictures));
-                        /*const lightbox = new SimpleLightbox('.gallery__link', { captionsData: "alt", captionDelay: "250" }).refresh();*/
-                   const lightbox = new SimpleLightbox('.gallery__link', { captionsData: "alt", captionDelay: "250" }).refresh();
+
+                        
+                        const lightbox = new SimpleLightbox('.gallery__link', { captionsData: "alt", captionDelay: "250" }).refresh();
+                        /*let lightbox = new SimpleLightbox('.gallery__link', { captionsData: "alt", captionDelay: "250" });*/
+                        
                         if (pictures.data.totalHits < pictures.data.hits.length) {
                     observer.unobserve(guard);
                     }
@@ -59,8 +62,8 @@ function handlerSearchForm  (event) {
                 
                 console.log(pictures)
                 gallery.innerHTML = createMarkup(pictures)
-                const lightbox = new SimpleLightbox('.gallery__link', { captionsData: "alt", captionDelay: "250" }).refresh();
-
+                let lightbox = new SimpleLightbox('.gallery__link', { captionsData: "alt", captionDelay: "250" }).refresh();
+            
                 if (pictures.data.totalHits > pictures.data.hits.length) {
                     observer.observe(guard);
                 }
