@@ -2,8 +2,8 @@ import './css/styles.css';
 import axios from 'axios';
 /*import axios, * as others from 'axios';*/
 import Notiflix from 'notiflix';
-const axios = require('axios/dist/node/axios.cjs');
 
+const axios = require('axios/dist/browser/axios.cjs');
 const form = document.querySelector('.search-form');
 const input = document.querySelector('input');
 const button = document.querySelector('button');
