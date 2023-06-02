@@ -2,7 +2,7 @@ import './css/styles.css';
 
 /*import axios, * as others from 'axios';*/
 import Notiflix from 'notiflix';
-import axios from 'axios';
+/*import axios from 'axios';
 const axios = require('axios/dist/node/axios.cjs');
 const axios = require('axios').default;
 import axios, {isCancel, AxiosError} from 'axios';
