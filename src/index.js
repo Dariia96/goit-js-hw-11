@@ -1,22 +1,15 @@
 import './css/styles.css';
-/*const axios = require('axios/dist/node/axios.cjs');*/
-import axios from 'axios';
-/*import axios, * as others from 'axios';*/
-import Notiflix from 'notiflix';
-/*import axios from 'axios';*/
-/*const axios = require('axios/dist/node/axios.cjs');*/
-/*const axios = require('axios').default;
-import axios, {isCancel, AxiosError} from 'axios';
-/*import axios, {isCancel, AxiosError} from 'axios';
-const axios = require('axios/dist/browser/axios.cjs');
-const axios = require('axios');
-const axios = require('axios/dist/browser/axios.cjs');*/
 
-/*const axios = require('axios').default;*/
+import axios from 'axios';
+
+import Notiflix from 'notiflix';
+
+
+
 const form = document.querySelector('.search-form');
 const input = document.querySelector('input');
 const button = document.querySelector('button');
-/*const axios = require('axios');*/
+
 const gallery = document.querySelector('.gallery');
 const guard = document.querySelector('.js-guard')
 let page = 1;
