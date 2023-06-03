@@ -1,4 +1,4 @@
-import './css/styles.css';
+
 
 import axios from 'axios';
 
@@ -40,15 +40,19 @@ function handlerPagination(entries, observer) {
                         /*let lightbox = new SimpleLightbox('.gallery__link', { captionsData: "alt", captionDelay: "250" });*/
                         
                         if (pictures.data.totalHits < pictures.data.hits.length) {
-                    observer.unobserve(guard);
+                            observer.unobserve(guard);
+                            
+                            
                     }
-                    else if(pictures.data.totalHits = pictures.data.hits.length){
-                        Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
+                     else if(pictures.data.totalHits = pictures.data.hits.length){
+                        Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.");
                         } 
                         
                 })
         }
-   /*form.reset()*/})
+        /*form.reset()*/
+})
+   
 }
 
 form.addEventListener('submit', handlerSearchForm)
