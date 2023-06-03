@@ -3,7 +3,8 @@ import './css/styles.css';
 import axios from 'axios';
 
 import Notiflix from 'notiflix';
-/*import SimpleLightbox from "simplelightbox";*/
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const form = document.querySelector('.search-form');
 const input = document.querySelector('input');
@@ -33,7 +34,9 @@ function handlerPagination(entries, observer) {
                         gallery.insertAdjacentHTML('beforeend', createMarkup(pictures));
 
                         
-                        const lightbox = new SimpleLightbox('.gallery__link', { captionsData: "alt", captionDelay: "250" }).refresh();
+                        let lightbox = new SimpleLightbox('.gallery__link', { captionsData: "alt", captionDelay: "250" }).refresh();
+                        
+                   
                         /*let lightbox = new SimpleLightbox('.gallery__link', { captionsData: "alt", captionDelay: "250" });*/
                         
                         if (pictures.data.totalHits < pictures.data.hits.length) {
