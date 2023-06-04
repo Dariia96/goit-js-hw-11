@@ -1,5 +1,5 @@
 
-
+import { servicePicture } from './service/servicePicture';
 import axios from 'axios';
 
 import Notiflix from 'notiflix';
@@ -24,13 +24,14 @@ let observer = new IntersectionObserver(handlerPagination, options);
 
 function handlerPagination(entries, observer) {
     console.log(entries);
+    
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
              
             page += 1;
             
-            servicePicture(page)
-                    .then(pictures => {
+                servicePicture(page)
+                .then(pictures => {
                         gallery.insertAdjacentHTML('beforeend', createMarkup(pictures));
 
                         
@@ -38,19 +39,21 @@ function handlerPagination(entries, observer) {
                         
                    
                         /*let lightbox = new SimpleLightbox('.gallery__link', { captionsData: "alt", captionDelay: "250" });*/
-                        
-                        if (pictures.data.totalHits < pictures.data.hits.length) {
+                       let totalPage = Math.ceil(pictures.data.totalHits / 40);
+                     console.log(totalPage)
+                        if (totalPage <= page) {
                             observer.unobserve(guard);
-                            
-                            
+                            Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.");
                     }
-                     else if(pictures.data.totalHits = pictures.data.hits.length){
-                        Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.");
-                        } 
+                        /*else if (!input.value) {
+                            let page = 1;
+                        
+                        } */
                         
                 })
+           
         }
-        /*form.reset()*/
+        /*form.reset();*/
 })
    
 }
@@ -58,9 +61,10 @@ function handlerPagination(entries, observer) {
 form.addEventListener('submit', handlerSearchForm)
 
 
-function handlerSearchForm  (event) {
-        
-        event.preventDefault();
+function handlerSearchForm(event) {
+   
+         event.preventDefault();
+       
         servicePicture(page)
             .then((pictures) => {
                 if (pictures.data.totalHits === 0) {
@@ -70,9 +74,10 @@ function handlerSearchForm  (event) {
                 console.log(pictures)
                 gallery.innerHTML = createMarkup(pictures)
                 let lightbox = new SimpleLightbox('.gallery__link', { captionsData: "alt", captionDelay: "250" }).refresh();
-            
-                if (pictures.data.totalHits > pictures.data.hits.length) {
+                 let totalPage = Math.ceil(pictures.data.totalHits / 40);
+                if (totalPage > page) {
                     observer.observe(guard);
+                    Notiflix.Notify.info(`Hooray! We found ${pictures.data.totalHits} images.`)
                 }
             }
             //gallery.insertAdjacentHTML('beforeend', galleryImages);}
@@ -84,31 +89,7 @@ function handlerSearchForm  (event) {
 
 }
 
-async function servicePicture( page = 1) {
-    const BASE_URL = 'https://pixabay.com/api/';
-    const API_KEY = '36867426-6bfbd52b6dcfdc96ad83106d5';
 
-    // return fetch(`${BASE_URL}/forecast.json?key=${API_KEY}&q=${city}&days=${days}&lang=uk`).then(resp => console.log(resp))
-    let pictureName = input.value.trim();
-
-    const params = new URLSearchParams({
-        key: API_KEY,
-        q: pictureName,
-        image_type: "photo",
-        orientation: "horizontal",
-        safesearch: "true",
-        page: page,
-        per_page: 40
-    })
-    // console.log(params.toString());
-    const pictures = await axios.get(`${BASE_URL}?${params}`);
-
-    //if (!response.ok) {
-       //  throw new Error(response.statusText);
-    // };   
-    //const pictures = await response.json();
-    return pictures;
-        }
 
 function createMarkup(arr) {
 
